@@ -1,15 +1,14 @@
 <?php
-session_start();
-require_once("../inc/init.php");
-require_once("../inc/JSON.php");
-$json = new Services_JSON();
-echo $json->encode(getLogin());
-require_once("../inc/end.php");
+session_start ();
+require_once ("../inc/init.php");
+require_once ("../inc/JSON.php");
+$json = new Services_JSON ();
+echo $json->encode ( getLogin () );
+require_once ("../inc/end.php");
 ?>
 
 <?php
-function getLogin(){
-
+function getLogin() {
 	$title = "vatirk 的后台管理登陆";
 	
 	$head = "
@@ -53,9 +52,9 @@ function getLogin(){
 	
 	$state = 0;
 	
-	$html = $head.$body.$footer;
+	$html = $head . $body . $footer;
 	
-	return output($state, $html);
+	return output ( $state, $html );
 }
 
 ?>

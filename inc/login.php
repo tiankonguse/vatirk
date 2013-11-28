@@ -29,7 +29,7 @@ function login(){
 		
 		
 		//实现此函数功能前检查此操作是否合法
-		$sql = "select * from `user` where password = '$password' and username = '$username'";
+		$sql = "select * from `vatirk_user` where password = '$password' and username = '$username'";
 		$result = @mysql_query($sql ,$conn);
 		if($result && mysql_num_rows($result) > 0){
 			$row=mysql_fetch_array($result);

@@ -1,11 +1,11 @@
-$(document).ready(function(){
-	var update_contest = function(){
-		$.post("inc/update_contest.php",function(){
-			setTimeout(update_contest,4000);
-		});
-	};
-	update_contest();
-});
+//$(document).ready(function(){
+//	var update_contest = function(){
+//		$.post("inc/update_contest.php",function(){
+//			setTimeout(update_contest,4000);
+//		});
+//	};
+//	update_contest();
+//});
 
 function showMessage(message,cb,now){
 	$message = $("#message");

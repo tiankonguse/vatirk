@@ -14,7 +14,7 @@
 
 
 <script src="js/jquery.js"></script>
-<script src="js/bootstrap.js"></script>	
+<script src="js/bootstrap.js"></script>
 <script src="js/bootbox.min.js"></script>
 <script src="js/jquery.tablesorter.min.js"></script>
 <!--[if lt IE 9]>
