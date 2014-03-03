@@ -8,17 +8,15 @@ if($_SESSION['username'] != ''){
 	$username = $_SESSION['username'];
 	$user_id = $_SESSION['user_id'];
 }
-
 $blogtitle = $_GET['blogtitle'];
+
 ?>
 
 <div class="container">
 	<?php include_once('inc/index.top.php'); ?>
 	<div id="article">
 		<?php 
-			if($blogtitle == ""){
-				include_once('inc/index.body.php'); 
-			}
+	include_once('inc/index.body.php'); 
 		?>
 	</div>
 </div>
@@ -26,7 +24,7 @@ $blogtitle = $_GET['blogtitle'];
 		$(function(){
 			$("#li_a_href_<?php echo $status_contest_record; ?>").addClass("active");
 		<?php 
-			if($blogtitle != ""){
+            if(preg_match('/^[a-zA-Z0-9_-]+$/',$blogtitle)){
 		?>
 			$.get("record/<?php echo $blogtitle;?>.html",function(d){
 				$("#article").html(d);
