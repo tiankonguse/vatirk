@@ -12,7 +12,6 @@ if ($_SESSION ['username'] != '') {
 $end_but_can_add = 0;
 include_once ('inc/contest.list.header.php');
 ?>
-
 <div class="container">
 	<?php include_once('inc/contest.list.top.php'); ?>
 	<table
@@ -50,7 +49,7 @@ while ( $result && $row = mysql_fetch_array ( $result ) ) {
 	$class = getShowColor ( $now_time, $row_start_time, $row_duration, $accept );
 	
 	if ($status == $status_contest_end || $status == $status_contest_will_do || $status == $status_mycontest_end || $accept) {
-		mysql_query ( "delete from vatirk_contest where  oj = '$row_oj' and name = '$row_name' and id != '$row_id'", $conn );
+//		mysql_query ( "delete from vatirk_contest where  oj = '$row_oj' and name = '$row_name' and id != '$row_id'", $conn );
 	}
 	
 	echo "<tr data-id='$row_id' id='contestant_$row_id' class='$class'>";

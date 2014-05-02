@@ -9,7 +9,14 @@ $status_description = array (
 		"?status=6" => "将参加的比赛",
 		"?status=7" => "已参加的比赛",
 		"contest.summary.php" => "解题报告" 
-);
+    );
+$skip_status = array(3);
+
+if($username == ""){
+    $skip_status[] = 6;
+    $skip_status[] = 7;
+}
+
 $status_contest_home = 1;
 $status_contest_runing = 2;
 $status_contest_hust = 3;
@@ -73,6 +80,4 @@ if (strcmp ( $sql, "" ) != 0) {
 	$page_count = intval ( (mysql_num_rows ( $result ) - 1) / $show_number );
 	$sql .= $sql_end;
 }
-
-
 ?>

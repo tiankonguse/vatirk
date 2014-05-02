@@ -1,7 +1,7 @@
 <?php
 function update($state) {
 	global $conn;
-// 	$state = 6;
+// 	$state = 4;
 	if ($state == 1) {
 		if (update_acmicpc ()) {
 			$sql = "UPDATE `vatirk_contest_update_time` SET `time`='" . time () . "' WHERE `state` = '$state'";
@@ -169,14 +169,23 @@ function update_upc() {
 	return true;
 }
 function update_hust() {
-	global $conn;
+    global $conn;
+    $context['http'] = array(
+        "Host"=>"acm.hust.edu.cn",
+        "Connection"=>"keep-alive",
+        "Accept"=>"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+        "User-Agent"=>"Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.132 Safari/537.36",
+        "Accept-Encoding"=>"gzip,deflate,sdch",
+        "Accept-Language"=>"zh-CN,zh;q=0.8,zh-TW;q=0.6",
+    );
+    $url = "http://acm.hust.edu.cn/vjudge/contest/listContest.action?s=true&r=true&e=false&contestType=0&iDisplayStart=0&iDisplayLength=20";
 	// get json data
-	$json = file_get_html ( 'http://acm.hust.edu.cn/vjudge/contest/listContest.action?s=true&r=true&e=false&contestType=0&iDisplayStart=0&iDisplayLength=100' );
-	
-	if ($json) {
+    $json = file_get_contents($url, 1, stream_context_create($context));
+    
+
+	if ($json && $json[0] == '{') {
 		$contest_objs = json_decode ( $json, true );
-		$contest_objs = $contest_objs ["aaData"];
-		
+        $contest_objs = $contest_objs ["aaData"];
 		foreach ( $contest_objs as $contest_obj ) {
 			$link = "http://acm.hust.edu.cn/vjudge/contest/view.action?cid=" . $contest_obj [0] . "#overview";
 			$oj = "hust";
@@ -193,7 +202,6 @@ function update_hust() {
 	}
 }
 function update_nenu() {
-	return true;
 	global $conn;
 	// get json data
 	//http://acm.nenu.edu.cn/judge/contest/toListContest.action
@@ -247,15 +255,15 @@ function update_zju() {
 	return true;
 }
 function update_acmicpc() {
-	return true;
 	$json = file_get_contents ( "http://contests.acmicpc.info/contests.json" );
 	if ($json) {
-		$contest_objs = json_decode ( $json, true );
+        $contest_objs = json_decode ( $json, true );
+        
 		foreach ( $contest_objs as $contest_obj ) {
 			$link = $contest_obj ['link'];
 			$cid = $contest_obj ['id'];
 			$oj = $contest_obj ['oj'];
-			if (strcmp ( $oj, "ZJU" ) == 0 || strcmp ( $oj, "nenu" ) == 0 || strcmp ( $oj, "hust" ) == 0 || strcmp ( $oj, "UPC" ) == 0 || strcmp ( $oj, "NEU" ) == 0 || strcmp ( $oj, "HDU" ) == 0) {
+			if (strcmp ( $oj, "ZJU" ) == 0 || strcmp ( $oj, "nenu" ) == 0 ||  strcmp ( $oj, "UPC" ) == 0 || strcmp ( $oj, "NEU" ) == 0 || strcmp ( $oj, "HDU" ) == 0) {
 				continue;
 			}
 			$name = $contest_obj ['name'];
@@ -265,7 +273,7 @@ function update_acmicpc() {
 			echo "$oj $start_time<br/>";
 		}
 		return true;
-	} else {
+    } else {
 		return false;
 	}
 }

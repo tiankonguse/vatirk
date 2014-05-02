@@ -11,7 +11,7 @@ if ($result && mysql_num_rows ( $result ) > 0) {
 	$time = $row ['time'];
 	$now_time = time ();
 	
-	if ($now_time >= $time) {
+    if ($now_time >= $time) {
 		echo "->" . $row ['state'] . "<br/>";
 		update ( $row ['state'] );
 	}

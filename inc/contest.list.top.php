@@ -10,7 +10,6 @@
 						<li id="login"><a href="javascript:return false;">登陆</a></li>
 					<li id="register"><a href="javascript:return false;">注册</a></li>
 					<?php } ?>
-						
 					</ul>
 			</div>
 			<h1>
@@ -27,16 +26,15 @@
 						</ul></li>
 					<?php
 					$i = 0;
-					foreach ( $status_description as $s => $d ) {
-						echo "<li id='li_a_href_$i'><a href='$s'>$d</a></li> ";
+                    foreach ( $status_description as $s => $d ) {
+                        if(!in_array($i, $skip_status)) {
+						    echo "<li id='li_a_href_$i'><a href='$s'>$d</a></li> ";
+                        }
 						$i ++;
 					}
 					?>
-					
 					</ul>
 			</div>
-
-
 		</div>
 	</div>
 </header>
