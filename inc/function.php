@@ -202,6 +202,7 @@ function update_hust() {
 	}
 }
 function update_nenu() {
+    return true;
 	global $conn;
 	// get json data
 	//http://acm.nenu.edu.cn/judge/contest/toListContest.action

@@ -37,7 +37,6 @@ if ($username != "") {
 $result = mysql_query ( $sql, $conn );
 
 while ( $result && $row = mysql_fetch_array ( $result ) ) {
-	
 	$row_id = $row ['id'];
 	$row_oj = $row ['oj'];
 	$row_name = $row ['name'];

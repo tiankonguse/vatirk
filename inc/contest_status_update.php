@@ -27,14 +27,14 @@ function contest(){
 		
 
 		//实现此函数功能前检查此操作是否合法
-		$sql = "select * from `contest_user` where contest_id = '$contest_id' and user_id = '$user_id'";
+		$sql = "select * from `vatirk_contest_user` where contest_id = '$contest_id' and user_id = '$user_id'";
 		$result = mysql_query($sql ,$conn);
 		if($result && mysql_num_rows($result) > 0){
 			if($status == 1){
 				return output(1,"你已经报名，不需要重复报名");
 			}else{
-				$sql = "DELETE FROM `contest_user` WHERE contest_id = '$contest_id' and user_id = '$user_id'";
-				$result = @mysql_query($sql ,$conn);
+				$sql = "DELETE FROM `vatirk_contest_user` WHERE contest_id = '$contest_id' and user_id = '$user_id'";
+				$result = mysql_query($sql ,$conn);
 				if($result){
 					return output(0,"取消报名成功");
 				}else{
@@ -45,8 +45,8 @@ function contest(){
 			if($status == 0){
 				return output(1,"你并没有报名，不需要取消报名");
 			}else{
-				$sql = "INSERT INTO `contest_user`(`contest_id`, `user_id`) VALUES ('$contest_id','$user_id')";
-				$result = @mysql_query($sql ,$conn);
+                $sql = "INSERT INTO `vatirk_contest_user`(`contest_id`, `user_id`) VALUES ('$contest_id','$user_id')";
+				$result = mysql_query($sql ,$conn);
 				if($result){
 					return output(0,"报名成功");
 				}else{
