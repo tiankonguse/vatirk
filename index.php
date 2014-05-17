@@ -4,7 +4,7 @@ $title = "vatirk 的训练基地";
 include_once ('inc/init.php');
 include_once ('inc/header.inc.php');
 $username = "";
-if ($_SESSION ['username'] != '') {
+if (isset($_SESSION["username"]) && $_SESSION ['username'] != '') {
 	$username = $_SESSION ['username'];
 	$user_id = $_SESSION ['user_id'];
 }
